@@ -18,7 +18,7 @@ regions (AMRs) for all samples in a data set."><!-- mathjax --><script src="http
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ramr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
       </span>
     </div>
 
@@ -54,7 +54,8 @@ regions (AMRs) for all samples in a data set."><!-- mathjax --><script src="http
 regions (AMRs) for all samples in a data set.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">getAMR</span><span class="op">(</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getAMR</span><span class="op">(</span>
   <span class="va">data.ranges</span>,
   data.samples <span class="op">=</span> <span class="cn">NULL</span>,
   ramr.method <span class="op">=</span> <span class="st">"IQR"</span>,
@@ -69,17 +70,21 @@ regions (AMRs) for all samples in a data set.</p>
   verbose <span class="op">=</span> <span class="cn">TRUE</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data.ranges</dt>
 <dd><p>A `GRanges` object with genomic locations and
 corresponding beta values included as metadata.</p></dd>
+
+
 <dt>data.samples</dt>
 <dd><p>A character vector with sample names (a subset of
 metadata column names). If `NULL` (the default), then all samples (metadata
 columns) are included in the analysis.</p></dd>
+
+
 <dt>ramr.method</dt>
 <dd><p>A character scalar: when ramr.method is "IQR" (the
 default), the filtering based on interquantile range is used (`iqr.cutoff`
@@ -90,46 +95,69 @@ beta distributions, respectively, is used, and `pval.cutoff` or `qval.cutoff`
 correlate with bin contents (number of values per bin) and inversly - with
 the distances from the median value, thus narrowing the estimated
 distribution and emphasizing outliers.</p></dd>
+
+
 <dt>iqr.cutoff</dt>
 <dd><p>A single integer &gt;= 1. Methylation beta values differing
 from the median value by more than `iqr.cutoff` interquartile ranges are
 considered to be significant (the default: 5).</p></dd>
+
+
 <dt>pval.cutoff</dt>
 <dd><p>A numeric scalar (the default: 5e-2). Bonferroni
 correction of `pval.cutoff` by the length of the `data.samples` object is
 used to calculate `qval.cutoff` if the latter is `NULL`.</p></dd>
+
+
 <dt>qval.cutoff</dt>
 <dd><p>A numeric scalar. Used as a threshold for filtering based
 on fitting non-weighted or weighted beta distributions: all p-values lower
 than `qval.cutoff` are considered to be significant. If `NULL` (the default),
 it is calculated using `pval.cutoff`</p></dd>
+
+
 <dt>merge.window</dt>
 <dd><p>A positive integer. All significant (survived the
 filtering stage) `data.ranges` genomic locations within this distance will be
 merged to create AMRs (the default: 300).</p></dd>
+
+
 <dt>min.cpgs</dt>
 <dd><p>A single integer &gt;= 1. All AMRs containing less than
 `min.cpgs` significant genomic locations are filtered out (the default: 7).</p></dd>
+
+
 <dt>min.width</dt>
 <dd><p>A single integer &gt;= 1 (the default). Only AMRs with the
 width of at least `min.width` are returned.</p></dd>
+
+
 <dt>exclude.range</dt>
 <dd><p>A numeric vector of length two. If not `NULL` (the
 default), all `data.ranges` genomic locations with their median methylation
 beta value within the `exclude.range` interval are filtered out.</p></dd>
+
+
 <dt>cores</dt>
 <dd><p>A single integer &gt;= 1. Number of processes for parallel
 computation (the default: all but one cores). Results of parallel processing
 are fully reproducible when the same seed is used (thanks to doRNG).</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>boolean to report progress and timings (default: TRUE).</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments to be passed to `EnvStats::ebeta` or
 `ExtDist::eBeta` functions.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The output is a `GRanges` object that contains all the aberrantly
+    
+
+<p>The output is a `GRanges` object that contains all the aberrantly
 methylated regions (AMRs) for all `data.samples` samples in `data.ranges`
 object. The following metadata columns may be present:</p><ul><li><p>`revmap` -- integer list of significant CpGs (`data.ranges` genomic
   locations) that are included in this AMR region</p></li>
@@ -165,15 +193,14 @@ for info on enrichment analysis, <code><a href="simulateAMR.html">simulateAMR</a
 <code><a href="simulateData.html">simulateData</a></code> for the generation of simulated test data sets,
 and `ramr` vignettes for the description of usage and sample data.</p></div>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ramr</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ramr</span><span class="op">)</span></span>
 <span class="r-in">  <span class="fu">getAMR</span><span class="op">(</span><span class="va">ramr.data</span>, <span class="va">ramr.samples</span>, ramr.method<span class="op">=</span><span class="st">"beta"</span>,</span>
 <span class="r-in">         min.cpgs<span class="op">=</span><span class="fl">5</span>, merge.window<span class="op">=</span><span class="fl">1000</span>, qval.cutoff<span class="op">=</span><span class="fl">1e-3</span>, cores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Identifying AMRs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  [7.887s]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  [7.610s]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GRanges object with 22 ranges and 5 metadata columns:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        seqnames          ranges strand |             revmap      ncpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; |             &lt;list&gt; &lt;integer&gt;</span>
@@ -217,7 +244,7 @@ and `ramr` vignettes for the description of usage and sample data.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
       </footer></div>
