@@ -1,39 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/ramr.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/getAMR.html</loc>
-  </url>
-  <url>
-    <loc>/reference/getUniverse.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plotAMR.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ramr.data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/simulateAMR.html</loc>
-  </url>
-  <url>
-    <loc>/reference/simulateData.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/ramr.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/getAMR.html</loc></url>
+<url><loc>/reference/getUniverse.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/plotAMR.html</loc></url>
+<url><loc>/reference/ramr.data.html</loc></url>
+<url><loc>/reference/simulateAMR.html</loc></url>
+<url><loc>/reference/simulateData.html</loc></url>
 </urlset>
+
