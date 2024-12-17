@@ -9,7 +9,7 @@ regions (AMRs) for all samples in a data set."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ramr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@ regions (AMRs) for all samples in a data set.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getAMR</span><span class="op">(</span></span>
 <span>  <span class="va">data.ranges</span>,</span>
 <span>  data.samples <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ramr.method <span class="op">=</span> <span class="st">"IQR"</span>,</span>
+<span>  ramr.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IQR"</span>, <span class="st">"beta"</span>, <span class="st">"wbeta"</span>, <span class="st">"beinf"</span><span class="op">)</span>,</span>
 <span>  iqr.cutoff <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  pval.cutoff <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  qval.cutoff <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -77,8 +77,9 @@ columns) are included in the analysis.</p></dd>
 <dt id="arg-ramr-method">ramr.method<a class="anchor" aria-label="anchor" href="#arg-ramr-method"></a></dt>
 <dd><p>A character scalar: when ramr.method is "IQR" (the
 default), the filtering based on interquantile range is used (`iqr.cutoff`
-value is then used as a threshold). When "beta" or "wbeta" - filtering based
-on fitting non-weighted (`EnvStats::ebeta`) or weighted (`ExtDist::eBeta`)
+value is then used as a threshold). When "beta", "wbeta" or "beinf" -
+filtering based on fitting non-weighted (`EnvStats::ebeta`), weighted
+(`ExtDist::eBeta`) or zero-and-one inflated (`gamlss.dist::BEINF`)
 beta distributions, respectively, is used, and `pval.cutoff` or `qval.cutoff`
 (if not `NULL`) is used as a threshold. For "wbeta", weights directly
 correlate with bin contents (number of values per bin) and inversly - with
@@ -161,12 +162,16 @@ object. The following metadata columns may be present:</p><ul><li><p>`revmap` â€
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>In the provided data set, `getAMR` compares methylation beta values of each
 sample with other samples to identify rare long-range methylation
-aberrations. For `ramr.method=="IQR"`: for every genomic location (CpG) in
+aberrations (epimutations).
+For `ramr.method=="IQR"`: for every genomic location (CpG) in
 `data.ranges` the IQR-normalized deviation from the median value is
 calculated, and all CpGs with such normalized deviation not smaller than the
-`iqr.cutoff` are retained. For `ramr.method=="*beta"`: parameters of beta
-distribution are estimated by means of `EnvStats::ebeta` or `ExtDist::eBeta`
-functions, and then used to calculate the probability values, followed by the
+`iqr.cutoff` are retained. For
+`ramr.method <!-- %in% c("beta", "wbeta", "beinf")`: parameters of beta -->
+distribution are estimated by means of `EnvStats::ebeta` (beta distribution),
+`ExtDist::eBeta` (weighted beta destribution), or `gamlss.dist::BEINF` (zero
+and one inflated beta distribution) functions, respectively. These
+parameters are then used to calculate the probability values, followed by the
 filtering when all CpGs with p-values not greater than `qval.cutoff` are
 retained. Another filtering is then performed to exclude all CpGs within
 `exclude.range`. Next, the retained (significant) CpGs are merged within
@@ -187,7 +192,9 @@ and `ramr` vignettes for the description of usage and sample data.</p></div>
 <span class="r-in"><span>  <span class="fu">getAMR</span><span class="op">(</span><span class="va">ramr.data</span>, <span class="va">ramr.samples</span>, ramr.method<span class="op">=</span><span class="st">"beta"</span>,</span></span>
 <span class="r-in"><span>         min.cpgs<span class="op">=</span><span class="fl">5</span>, merge.window<span class="op">=</span><span class="fl">1000</span>, qval.cutoff<span class="op">=</span><span class="fl">1e-3</span>, cores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Identifying AMRs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  [5.340s]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: foreach</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: rngtools</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  [4.823s]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GRanges object with 22 ranges and 5 metadata columns:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        seqnames          ranges strand |             revmap      ncpg</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; |             &lt;list&gt; &lt;integer&gt;</span>
