@@ -295,13 +295,13 @@ seed has been set (thanks to doRNG::%dorng%).</p>
 <span>    <span class="fu"><a href="../reference/simulateData.html">simulateData</a></span><span class="op">(</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">25</span>, cores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simulating dataLoading required package: foreach</span></span>
 <span><span class="co">#&gt; Loading required package: rngtools</span></span>
-<span><span class="co">#&gt;  [0.695s]</span></span>
+<span><span class="co">#&gt;  [0.682s]</span></span>
 <span>  </span>
 <span><span class="co"># methylation data with AMRs and noise</span></span>
 <span>  <span class="va">noisy.data</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="../reference/simulateData.html">simulateData</a></span><span class="op">(</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">25</span>,</span>
 <span>                 amr.ranges<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">amrs.unique</span>, <span class="va">amrs.nonunique</span>, <span class="va">noise</span><span class="op">)</span>, cores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Simulating data [0.670s]</span></span>
+<span><span class="co">#&gt; Simulating data [0.669s]</span></span>
 <span><span class="co">#&gt; Introducing epimutations [0.034s]</span></span>
 <span>  </span>
 <span><span class="co"># that's how regions look like</span></span>
@@ -328,9 +328,9 @@ seed has been set (thanks to doRNG::%dorng%).</p>
 <span><span class="co"># can we find them?</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">found</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getAMR.html">getAMR</a></span><span class="op">(</span><span class="va">noisy.data</span>, ramr.method<span class="op">=</span><span class="st">"beta"</span>, min.cpgs<span class="op">=</span><span class="fl">5</span>,</span>
 <span>                              merge.window<span class="op">=</span><span class="fl">1000</span>, qval.cutoff<span class="op">=</span><span class="fl">1e-2</span>, cores<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Identifying AMRs [1.848s]</span></span>
+<span><span class="co">#&gt; Identifying AMRs [1.804s]</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;   2.625   0.740   1.981</span></span>
+<span><span class="co">#&gt;   2.541   0.803   1.942</span></span>
 <span>  </span>
 <span><span class="co"># all possible regions</span></span>
 <span>  <span class="va">all.ranges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getUniverse.html">getUniverse</a></span><span class="op">(</span><span class="va">noisy.data</span>, min.cpgs<span class="op">=</span><span class="fl">5</span>, merge.window<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
@@ -366,7 +366,7 @@ seed has been set (thanks to doRNG::%dorng%).</p>
 <code class="sourceCode R"><span><span class="co"># identify AMRs</span></span>
 <span><span class="va">amrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getAMR.html">getAMR</a></span><span class="op">(</span><span class="va">ramr.data</span>, <span class="va">ramr.samples</span>, ramr.method<span class="op">=</span><span class="st">"beta"</span>, min.cpgs<span class="op">=</span><span class="fl">5</span>,</span>
 <span>               merge.window<span class="op">=</span><span class="fl">1000</span>, qval.cutoff<span class="op">=</span><span class="fl">1e-3</span>, cores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Identifying AMRs [4.205s]</span></span>
+<span><span class="co">#&gt; Identifying AMRs [4.293s]</span></span>
 <span></span>
 <span><span class="co"># inspect</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">amrs</span><span class="op">)</span></span>
