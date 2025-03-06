@@ -143,9 +143,9 @@ detection. More details on weighted parameter estimation are given in
 <dt id="arg-ncores">ncores<a class="anchor" aria-label="anchor" href="#arg-ncores"></a></dt>
 <dd><p>A single integer &gt;= 1 for the number of OpenMP threads for
 parallel computation. By default (NULL), function will use half of available
-cores. Results of this function are always identical (reproducible) even
-when more than one core is used (at a cost of serial random number
-generation).</p></dd>
+cores. When the same random seed is set, results of this function are always
+identical (reproducible), even when more than one core is used (at a cost
+of serial random number generation).</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
@@ -206,6 +206,7 @@ usage and sample data.</p></div>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ramr</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">amrs</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="simulateAMR.html">simulateAMR</a></span><span class="op">(</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">10</span>, regions.per.sample<span class="op">=</span><span class="fl">3</span>,</span></span>
 <span class="r-in"><span>                samples.per.region<span class="op">=</span><span class="fl">1</span>, min.cpgs<span class="op">=</span><span class="fl">5</span>, merge.window<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span></span>
@@ -215,16 +216,16 @@ usage and sample data.</p></div>
 <span class="r-in"><span>  <span class="va">noisy.data</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>    <span class="fu">simulateData</span><span class="op">(</span>template.ranges<span class="op">=</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">10</span>, amr.ranges<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">amrs</span>,<span class="va">noise</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Preprocessing data </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [0.051s]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [0.053s]</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating data </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> [0.003s]</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Introducing epimutations</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [0.013s]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [0.014s]</span>
 <span class="r-in"><span>  <span class="fu"><a href="plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">noisy.data</span>, amr.ranges<span class="op">=</span><span class="va">amrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Plotting 1 genomic ranges </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [0.058s]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`chr1:1117473-1118965`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [0.062s]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`chr1:1333778-1338100`</span>
 <span class="r-plt img"><img src="simulateData-1.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
