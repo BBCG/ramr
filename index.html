@@ -6,11 +6,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Detection of Rare Aberrantly Methylated Regions in Array and NGS Data • ramr</title>
-<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><script src="deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Detection of Rare Aberrantly Methylated Regions in Array and NGS Data">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Detection of Rare Aberrantly Methylated Regions in Array and NGS Data">
 <meta name="description" content="ramr is an R package for detection of epimutations (i.e., infrequent aberrant DNA methylation events) in large data sets obtained by methylation profiling using array or high-throughput methylation sequencing. In addition, package provides functions to visualize found aberrantly methylated regions (AMRs), to generate sets of all possible regions to be used as reference sets for enrichment analysis, and to generate biologically relevant test data sets for performance evaluation of AMR/DMR search algorithms.">
 <meta property="og:description" content="ramr is an R package for detection of epimutations (i.e., infrequent aberrant DNA methylation events) in large data sets obtained by methylation profiling using array or high-throughput methylation sequencing. In addition, package provides functions to visualize found aberrantly methylated regions (AMRs), to generate sets of all possible regions to be used as reference sets for enrichment analysis, and to generate biologically relevant test data sets for performance evaluation of AMR/DMR search algorithms.">
 </head>
@@ -22,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ramr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,23 +60,31 @@
 <div class="section level1">
 <h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h1>
-<p><em><code>ramr</code></em> is an R package for detection of low-frequency aberrant methylation events in large data sets obtained by methylation profiling using array or high-throughput bisulfite sequencing. In addition, package provides functions to visualize found aberrantly methylated regions (AMRs), to generate sets of all possible regions to be used as reference sets for enrichment analysis, and to generate biologically relevant test data sets for performance evaluation of AMR/DMR search algorithms.</p>
-<p>This readme contains condensed info on <em><code>ramr</code></em> usage. For more, please check function-specific help pages and vignettes within the R environment or at <a href="https://bbcg.github.io/ramr/articles/ramr.html" class="external-link">GitHub pages</a>.</p>
-<div class="section level2">
-<h2 id="current-features">Current Features<a class="anchor" aria-label="anchor" href="#current-features"></a>
-</h2>
+<p><code>ramr</code> is an R package for detection of low-frequency aberrant methylation events (epimutations) in large data sets obtained by methylation profiling using array or high-throughput methylation sequencing. In addition, package provides functions to visualize found aberrantly methylated regions (AMRs), to generate sets of all possible regions to be used as reference sets for enrichment analysis, and to generate biologically relevant test data sets for performance evaluation of AMR/DMR search algorithms.</p>
+<p>This readme contains condensed info on <code>ramr</code> usage. For more, please check function-specific help pages and vignettes within the R environment or at <a href="https://bbcg.github.io/ramr/articles/ramr.html" class="external-link">GitHub pages</a>.</p>
+<div class="section level3">
+<h3 id="current-features">Current Features<a class="anchor" aria-label="anchor" href="#current-features"></a>
+</h3>
 <ul>
-<li>Identification of aberrantly methylated regions (AMRs)
-<ul>
-<li>filtering by interquartile range (IQR)</li>
-<li>filtering by fitting non-weighted, weighted, or one-and-zero inflated beta distributions</li>
-</ul>
-</li>
+<li>Identification of aberrantly methylated regions (AMRs, i.e., epimutations)</li>
 <li>AMR visualization</li>
-<li>Generation of reference sets for third-party analyses (e.g. enrichment)</li>
+<li>Generation of reference sets for third-party analyses (e.g., enrichment)</li>
 <li>Generation of test data sets for performance evaluation of algorithms for search of differentially (DMR) or aberrantly (AMR) methylated regions</li>
 </ul>
+</div>
+<div class="section level3">
+<h3 id="major-improvements">Major improvements<a class="anchor" aria-label="anchor" href="#major-improvements"></a>
+</h3>
+<div class="section level5">
+<h5 id="v116-bioc-321">v1.16 [BioC 3.21]<a class="anchor" aria-label="anchor" href="#v116-bioc-321"></a>
+</h5>
+<ul>
+<li>Major rewrite of <code>getAMR</code> and <code>simulateData</code> functions, which are now much faster (C/C++, OpenMP threads) and more robust (correctly deal with methylation sequencing data that often contains 0 and 1 values)</li>
+<li>Old functions <code>getAMR</code> and <code>simulateData</code> as they were described in the <code>ramr</code> paper are now obsolete, but kept under different names (<code>getAMR.obsolete</code> and <code>simulateData.obsolete</code>, respectively) for consistency</li>
+<li>Cleaner and more robust AMR plotting</li>
+</ul>
 <hr>
+</div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -95,18 +109,18 @@
 <hr>
 </div>
 <div class="section level3">
-<h3 id="citing-the-ramr-package">Citing the <em><code>ramr</code></em> package<a class="anchor" aria-label="anchor" href="#citing-the-ramr-package"></a>
+<h3 id="citing-the-ramr-package">Citing the <code>ramr</code> package<a class="anchor" aria-label="anchor" href="#citing-the-ramr-package"></a>
 </h3>
-<p>Oleksii Nikolaienko, Per Eystein Lønning, Stian Knappskog, <em>ramr</em>: an R/Bioconductor package for detection of rare aberrantly methylated regions, Bioinformatics, 2021;, btab586, <a href="https://doi.org/10.1093/bioinformatics/btab586" class="external-link">https://doi.org/10.1093/bioinformatics/btab586</a></p>
+<p>Oleksii Nikolaienko, Per Eystein Lønning, Stian Knappskog, <em>ramr</em>: an R/Bioconductor package for detection of rare aberrantly methylated regions, Bioinformatics, 2021;, btab586, <a href="https://doi.org/10.1093/bioinformatics/btab586" class="external-link uri">https://doi.org/10.1093/bioinformatics/btab586</a></p>
 </div>
 <div class="section level3">
-<h3 id="the-data-underlying-ramr-manuscript">The data underlying <em><code>ramr</code></em> manuscript<a class="anchor" aria-label="anchor" href="#the-data-underlying-ramr-manuscript"></a>
+<h3 id="the-data-underlying-ramr-manuscript">The data underlying <code>ramr</code> manuscript<a class="anchor" aria-label="anchor" href="#the-data-underlying-ramr-manuscript"></a>
 </h3>
-<p>Replication Data for: “ramr: an R package for detection of rare aberrantly methylated regions, <a href="https://doi.org/10.18710/ED8HSD" class="external-link">https://doi.org/10.18710/ED8HSD</a></p>
+<p>Replication Data for: “ramr: an R package for detection of rare aberrantly methylated regions, <a href="https://doi.org/10.18710/ED8HSD" class="external-link uri">https://doi.org/10.18710/ED8HSD</a></p>
 </div>
 <div class="section level3">
 <h3 id="ramr-at-bioconductor">
-<em><code>ramr</code></em> at Bioconductor<a class="anchor" aria-label="anchor" href="#ramr-at-bioconductor"></a>
+<code>ramr</code> at Bioconductor<a class="anchor" aria-label="anchor" href="#ramr-at-bioconductor"></a>
 </h3>
 <p><a href="https://bioconductor.org/packages/release/bioc/html/ramr.html" class="external-link">release</a>, <a href="https://bioconductor.org/packages/devel/bioc/html/ramr.html" class="external-link">development version</a></p>
 <hr>
@@ -117,7 +131,7 @@
 <h1 id="how-to-use">How to Use<a class="anchor" aria-label="anchor" href="#how-to-use"></a>
 </h1>
 <p>Please read package vignettes at <a href="https://bbcg.github.io/ramr/articles/ramr.html" class="external-link">GitHub pages</a> or within the R environment: <code><a href="articles/ramr.html">vignette("ramr", package="ramr")</a></code>, or consult the function’s help pages for the extensive information on usage, parameters and output values.</p>
-<p><em><code>ramr</code></em> methods operate on objects of the class <em><code>GRanges</code></em>. The input object for AMR search must in addition contain metadata columns with sample beta values. A typical input object looks like this:</p>
+<p><code>ramr</code> methods operate on objects of the class <code>GRanges</code>. The input object for AMR search must in addition contain metadata columns with sample beta values. A typical input object looks like this:</p>
 <pre><code>GRanges object with 383788 ranges and 845 metadata columns:
              seqnames    ranges strand |         GSM1235534         GSM1235535         GSM1235536 ...
                 &lt;Rle&gt; &lt;IRanges&gt;  &lt;Rle&gt; |          &lt;numeric&gt;          &lt;numeric&gt;          &lt;numeric&gt; ...
@@ -131,20 +145,19 @@
   cg22122449    chr22  51176711      * |  0.882444486059592  0.870804215405886  0.859269224277308 ...
   cg08423507    chr22  51177982      * |  0.886406345093286  0.882430879852752  0.887241923657461 ...
   cg19565306    chr22  51222011      * | 0.0719084295670266 0.0845209871264646 0.0689074604483659 ...
-  cg09226288    chr22  51225561      * |  0.724145303755024  0.696281176451351  0.711459675603635 ...
-</code></pre>
-<p>This code shows how to do basic analysis with <em><code>ramr</code></em> using provided data files:</p>
+  cg09226288    chr22  51225561      * |  0.724145303755024  0.696281176451351  0.711459675603635 ...</code></pre>
+<p>This code shows how to do basic analysis with <code>ramr</code> using provided data files:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/BBCG/ramr" class="external-link">ramr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ramr</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># search for AMRs</span></span>
-<span><span class="va">amrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getAMR.html">getAMR</a></span><span class="op">(</span><span class="va">ramr.data</span>, <span class="va">ramr.samples</span>, ramr.method<span class="op">=</span><span class="st">"beta"</span>, min.cpgs<span class="op">=</span><span class="fl">5</span>,</span>
-<span>               merge.window<span class="op">=</span><span class="fl">1000</span>, qval.cutoff<span class="op">=</span><span class="fl">1e-3</span><span class="op">)</span></span>
+<span><span class="va">amrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getAMR.html">getAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">ramr.data</span>, compute<span class="op">=</span><span class="st">"beta+binom"</span>, compute.estimate<span class="op">=</span><span class="st">"amle"</span>,</span>
+<span>               compute.weights<span class="op">=</span><span class="st">"logInvDist"</span>, combine.min.cpgs<span class="op">=</span><span class="fl">5</span>, combine.threshold<span class="op">=</span><span class="fl">1e-2</span>, combine.window<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># inspect</span></span>
 <span><span class="va">amrs</span></span>
-<span><span class="fu"><a href="reference/plotAMR.html">plotAMR</a></span><span class="op">(</span><span class="va">ramr.data</span>, <span class="va">ramr.samples</span>, <span class="va">amrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">ramr.data</span>, amr.ranges<span class="op">=</span><span class="va">amrs</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># generate the set of all possible genomic regions using sample data set and</span></span>
 <span><span class="co"># the same parameters as for AMR search</span></span>
@@ -156,13 +169,16 @@
 <span><span class="va">core.hits</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/LOLA/man/runLOLA.html" class="external-link">runLOLA</a></span><span class="op">(</span><span class="va">amrs</span>, <span class="va">universe</span>, <span class="va">hg19.coredb</span>, cores<span class="op">=</span><span class="fl">1</span>, redefineUserSets<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>The following code generates random AMRs and methylation beta values using provided data set as a template:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># unique random AMRs</span></span>
+<code class="sourceCode R"><span><span class="co"># set the seed for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># unique random AMRs</span></span>
 <span><span class="va">amrs.unique</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulateAMR.html">simulateAMR</a></span><span class="op">(</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">10</span>, regions.per.sample<span class="op">=</span><span class="fl">2</span>,</span>
 <span>                           min.cpgs<span class="op">=</span><span class="fl">5</span>, merge.window<span class="op">=</span><span class="fl">1000</span>, dbeta<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># methylation data with AMRs</span></span>
-<span><span class="va">data.with.amrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulateData.html">simulateData</a></span><span class="op">(</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">10</span>,</span>
-<span>                               amr.ranges<span class="op">=</span><span class="va">amrs.unique</span>, cores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">data.with.amrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulateData.html">simulateData</a></span><span class="op">(</span>template.ranges<span class="op">=</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">99</span>,</span>
+<span>                               amr.ranges<span class="op">=</span><span class="va">amrs.unique</span>, ncores<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span>  </span>
 <span><span class="co"># that's how regions look like</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
@@ -171,7 +187,7 @@
 <div class="section level3">
 <h3 id="using-data-from-ncbi-geo">Using data from NCBI GEO<a class="anchor" aria-label="anchor" href="#using-data-from-ncbi-geo"></a>
 </h3>
-<p>The following code pulls (NB: very large) raw files from NCBI GEO database, performs normalization and creates <em><code>GRanges</code></em> object for further analysis using <em><code>ramr</code></em> (system requirements: 22GB of disk space, 64GB of RAM)</p>
+<p>The following code pulls (NB: very large) raw files from NCBI GEO database, performs normalization and creates <em><code>GRanges</code></em> object for further analysis using <code>ramr</code> (system requirements: 22GB of disk space, 64GB of RAM)</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">minfi</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GEOquery</span><span class="op">)</span></span>
@@ -275,7 +291,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Oleksii Nikolaienko <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5910-4934" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Oleksii Nikolaienko <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5910-4934" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 

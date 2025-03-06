@@ -5,11 +5,13 @@
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/reference/getAMR.html</loc></url>
+<url><loc>/reference/getAMR.obsolete.html</loc></url>
 <url><loc>/reference/getUniverse.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/plotAMR.html</loc></url>
 <url><loc>/reference/ramr.data.html</loc></url>
 <url><loc>/reference/simulateAMR.html</loc></url>
 <url><loc>/reference/simulateData.html</loc></url>
+<url><loc>/reference/simulateData.obsolete.html</loc></url>
 </urlset>
 
