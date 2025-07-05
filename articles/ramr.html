@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.15.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.17.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Oleksii
 Nikolaienko</h4>
             
-            <h4 data-toc-skip class="date">06 March, 2025</h4>
+            <h4 data-toc-skip class="date">05 July, 2025</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BBCG/ramr/blob/devel/vignettes/ramr.Rmd" class="external-link"><code>vignettes/ramr.Rmd</code></a></small>
       <div class="d-none name"><code>ramr.Rmd</code></div>
@@ -178,7 +178,7 @@ carries 6 unique (<code>ramr.tp.unique</code>) and 15 non-unique
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     expand.grid, I, unname</span></span>
 <span><span class="co">#&gt; Loading required package: IRanges</span></span>
-<span><span class="co">#&gt; Loading required package: GenomeInfoDb</span></span>
+<span><span class="co">#&gt; Loading required package: Seqinfo</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/BBCG/ramr" class="external-link">ramr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ramr</span><span class="op">)</span></span>
@@ -204,14 +204,14 @@ carries 6 unique (<code>ramr.tp.unique</code>) and 15 non-unique
 <span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">ramr.data</span>, amr.ranges<span class="op">=</span><span class="va">ramr.tp.unique</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 1 genomic ranges</span></span>
 <span><span class="co">#&gt; 100%</span></span>
-<span><span class="co">#&gt; [0.183s]</span></span>
+<span><span class="co">#&gt; [0.213s]</span></span>
 <span><span class="co">#&gt; $`chr1:2269871-2271665`</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-2-1.png" width="100%" height="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">ramr.data</span>, amr.ranges<span class="op">=</span><span class="va">ramr.tp.nonunique</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">11</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 1 genomic ranges</span></span>
 <span><span class="co">#&gt; 100%</span></span>
-<span><span class="co">#&gt; [0.107s]</span></span>
+<span><span class="co">#&gt; [0.113s]</span></span>
 <span><span class="co">#&gt; $`chr1:874697-877876`</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-2-2.png" width="100%" height="100%"></p>
 <p>The input (or template) object may be obtained using data from
@@ -323,16 +323,16 @@ cost of serial random number generation).</p>
 <span><span class="co"># "smooth" methylation data without AMRs (negative control)</span></span>
 <span>  <span class="va">smooth.data</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="../reference/simulateData.html">simulateData</a></span><span class="op">(</span>template.ranges<span class="op">=</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">25</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Preprocessing data [0.061s]</span></span>
+<span><span class="co">#&gt; Preprocessing data [0.055s]</span></span>
 <span><span class="co">#&gt; Simulating data [0.007s]</span></span>
 <span>  </span>
 <span><span class="co"># methylation data with AMRs and noise</span></span>
 <span>  <span class="va">noisy.data</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="../reference/simulateData.html">simulateData</a></span><span class="op">(</span>template.ranges<span class="op">=</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">25</span>,</span>
 <span>                 amr.ranges<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">amrs.unique</span>, <span class="va">amrs.nonunique</span>, <span class="va">noise</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Preprocessing data [0.056s]</span></span>
+<span><span class="co">#&gt; Preprocessing data [0.055s]</span></span>
 <span><span class="co">#&gt; Simulating data [0.007s]</span></span>
-<span><span class="co">#&gt; Introducing epimutations[0.027s]</span></span>
+<span><span class="co">#&gt; Introducing epimutations[0.028s]</span></span>
 <span>  </span>
 <span><span class="co"># that's how regions look like</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
@@ -346,19 +346,19 @@ cost of serial random number generation).</p>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">noisy.data</span>, amr.ranges<span class="op">=</span><span class="va">amrs.unique</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.239s]</span></span></code></pre></div>
+<span><span class="co">#&gt; [0.228s]</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-3-1.png" width="100%" height="100%"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">noisy.data</span>, amr.ranges<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">amrs.nonunique</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.244s]</span></span></code></pre></div>
+<span><span class="co">#&gt; [0.235s]</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-3-2.png" width="100%" height="100%"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">noisy.data</span>, amr.ranges<span class="op">=</span><span class="va">noise</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.240s]</span></span>
+<span><span class="co">#&gt; [0.230s]</span></span>
 <span><span class="co">#&gt; `geom_line()`: Each group consists of only one observation.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Do you need to adjust the <span style="color: #00BB00;">group</span> aesthetic?</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-3-3.png" width="100%" height="100%"></p>
@@ -373,10 +373,10 @@ cost of serial random number generation).</p>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; Preprocessing data [0.014s]</span></span>
-<span><span class="co">#&gt; Fitting beta distribution [0.019s]</span></span>
-<span><span class="co">#&gt; Creating genomic ranges [0.011s]</span></span>
+<span><span class="co">#&gt; Fitting beta distribution [0.018s]</span></span>
+<span><span class="co">#&gt; Creating genomic ranges [0.010s]</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;   0.057   0.000   0.057</span></span>
+<span><span class="co">#&gt;   0.059   0.000   0.059</span></span>
 <span>  </span>
 <span><span class="co"># all possible regions</span></span>
 <span>  <span class="va">all.ranges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getUniverse.html">getUniverse</a></span><span class="op">(</span><span class="va">noisy.data</span>, min.cpgs<span class="op">=</span><span class="fl">5</span>, merge.window<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
@@ -414,9 +414,9 @@ provided data files:</p>
 <span>  data.ranges<span class="op">=</span><span class="va">ramr.data</span>, data.samples<span class="op">=</span><span class="va">ramr.samples</span>, compute<span class="op">=</span><span class="st">"beta+binom"</span>,</span>
 <span>      combine.min.cpgs<span class="op">=</span><span class="fl">5</span>, combine.threshold<span class="op">=</span><span class="fl">1e-2</span>, combine.window<span class="op">=</span><span class="fl">1000</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Preprocessing data [0.053s]</span></span>
-<span><span class="co">#&gt; Fitting beta distribution [0.067s]</span></span>
-<span><span class="co">#&gt; Creating genomic ranges [0.010s]</span></span>
+<span><span class="co">#&gt; Preprocessing data [0.055s]</span></span>
+<span><span class="co">#&gt; Fitting beta distribution [0.068s]</span></span>
+<span><span class="co">#&gt; Creating genomic ranges [0.009s]</span></span>
 <span></span>
 <span><span class="co"># inspect</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">amrs</span><span class="op">)</span></span>
@@ -453,7 +453,7 @@ provided data files:</p>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">ramr.data</span>, amr.ranges<span class="op">=</span><span class="va">amrs</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.273s]</span></span></code></pre></div>
+<span><span class="co">#&gt; [0.258s]</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-4-1.png" width="100%" height="100%"></p>
 <p>The results of parallel AMR search are fully reproducible (do not
 depend on the seed).</p>
@@ -547,9 +547,9 @@ aberrantly methylated regions, <a href="https://doi.org/10.18710/ED8HSD" class="
 </h4>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R Under development (unstable) (2025-02-24 r87814)</span></span>
+<span><span class="co">#&gt; R version 4.5.1 (2025-06-13)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 24.04.1 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 24.04.2 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
@@ -569,48 +569,48 @@ aberrantly methylated regions, <a href="https://doi.org/10.18710/ED8HSD" class="
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
 <span><span class="co">#&gt;  [1] org.Hs.eg.db_3.21.0                     TxDb.Hsapiens.UCSC.hg19.knownGene_3.2.2</span></span>
-<span><span class="co">#&gt;  [3] GenomicFeatures_1.59.1                  AnnotationDbi_1.69.0                   </span></span>
-<span><span class="co">#&gt;  [5] Biobase_2.67.0                          annotatr_1.33.0                        </span></span>
-<span><span class="co">#&gt;  [7] gridExtra_2.3                           ramr_1.15.2                            </span></span>
-<span><span class="co">#&gt;  [9] ggplot2_3.5.1                           GenomicRanges_1.59.1                   </span></span>
-<span><span class="co">#&gt; [11] GenomeInfoDb_1.43.4                     IRanges_2.41.3                         </span></span>
-<span><span class="co">#&gt; [13] S4Vectors_0.45.4                        BiocGenerics_0.53.6                    </span></span>
-<span><span class="co">#&gt; [15] generics_0.1.3                         </span></span>
+<span><span class="co">#&gt;  [3] GenomicFeatures_1.61.4                  AnnotationDbi_1.71.0                   </span></span>
+<span><span class="co">#&gt;  [5] Biobase_2.69.0                          annotatr_1.35.1                        </span></span>
+<span><span class="co">#&gt;  [7] gridExtra_2.3                           ramr_1.17.0                            </span></span>
+<span><span class="co">#&gt;  [9] ggplot2_3.5.2                           GenomicRanges_1.61.1                   </span></span>
+<span><span class="co">#&gt; [11] Seqinfo_0.99.1                          IRanges_2.43.0                         </span></span>
+<span><span class="co">#&gt; [13] S4Vectors_0.47.0                        BiocGenerics_0.55.0                    </span></span>
+<span><span class="co">#&gt; [15] generics_0.1.4                         </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] DBI_1.2.3                   bitops_1.0-9                rlang_1.1.5                </span></span>
-<span><span class="co">#&gt;  [4] magrittr_2.0.3              matrixStats_1.5.0           compiler_4.5.0             </span></span>
-<span><span class="co">#&gt;  [7] RSQLite_2.3.9               png_0.1-8                   systemfonts_1.2.1          </span></span>
-<span><span class="co">#&gt; [10] vctrs_0.6.5                 reshape2_1.4.4              stringr_1.5.1              </span></span>
-<span><span class="co">#&gt; [13] pkgconfig_2.0.3             crayon_1.5.3                fastmap_1.2.0              </span></span>
-<span><span class="co">#&gt; [16] dbplyr_2.5.0                XVector_0.47.2              labeling_0.4.3             </span></span>
-<span><span class="co">#&gt; [19] utf8_1.2.4                  Rsamtools_2.23.1            rmarkdown_2.29             </span></span>
-<span><span class="co">#&gt; [22] tzdb_0.4.0                  UCSC.utils_1.3.1            ragg_1.3.3                 </span></span>
-<span><span class="co">#&gt; [25] purrr_1.0.4                 bit_4.6.0                   xfun_0.51                  </span></span>
-<span><span class="co">#&gt; [28] cachem_1.1.0                jsonlite_1.9.1              blob_1.2.4                 </span></span>
-<span><span class="co">#&gt; [31] DelayedArray_0.33.6         BiocParallel_1.41.2         parallel_4.5.0             </span></span>
-<span><span class="co">#&gt; [34] R6_2.6.1                    stringi_1.8.4               bslib_0.9.0                </span></span>
-<span><span class="co">#&gt; [37] rtracklayer_1.67.1          jquerylib_0.1.4             Rcpp_1.0.14                </span></span>
-<span><span class="co">#&gt; [40] SummarizedExperiment_1.37.0 knitr_1.49                  readr_2.1.5                </span></span>
-<span><span class="co">#&gt; [43] Matrix_1.7-2                tidyselect_1.2.1            abind_1.4-8                </span></span>
-<span><span class="co">#&gt; [46] yaml_2.3.10                 codetools_0.2-20            curl_6.2.1                 </span></span>
-<span><span class="co">#&gt; [49] plyr_1.8.9                  lattice_0.22-6              tibble_3.2.1               </span></span>
-<span><span class="co">#&gt; [52] regioneR_1.39.0             withr_3.0.2                 KEGGREST_1.47.0            </span></span>
-<span><span class="co">#&gt; [55] evaluate_1.0.3              desc_1.4.3                  BiocFileCache_2.15.1       </span></span>
-<span><span class="co">#&gt; [58] Biostrings_2.75.4           pillar_1.10.1               BiocManager_1.30.25        </span></span>
-<span><span class="co">#&gt; [61] filelock_1.0.3              MatrixGenerics_1.19.1       RCurl_1.98-1.16            </span></span>
-<span><span class="co">#&gt; [64] BiocVersion_3.21.1          hms_1.1.3                   munsell_0.5.1              </span></span>
-<span><span class="co">#&gt; [67] scales_1.3.0                glue_1.8.0                  tools_4.5.0                </span></span>
-<span><span class="co">#&gt; [70] AnnotationHub_3.15.0        BiocIO_1.17.1               data.table_1.17.0          </span></span>
-<span><span class="co">#&gt; [73] BSgenome_1.75.1             GenomicAlignments_1.43.0    fs_1.6.5                   </span></span>
-<span><span class="co">#&gt; [76] XML_3.99-0.18               grid_4.5.0                  colorspace_2.1-1           </span></span>
-<span><span class="co">#&gt; [79] GenomeInfoDbData_1.2.13     restfulr_0.0.15             cli_3.6.4                  </span></span>
-<span><span class="co">#&gt; [82] rappdirs_0.3.3              textshaping_1.0.0           S4Arrays_1.7.3             </span></span>
-<span><span class="co">#&gt; [85] dplyr_1.1.4                 gtable_0.3.6                sass_0.4.9                 </span></span>
-<span><span class="co">#&gt; [88] digest_0.6.37               SparseArray_1.7.6           rjson_0.2.23               </span></span>
+<span><span class="co">#&gt;  [1] DBI_1.2.3                   bitops_1.0-9                httr2_1.1.2                </span></span>
+<span><span class="co">#&gt;  [4] rlang_1.1.6                 magrittr_2.0.3              matrixStats_1.5.0          </span></span>
+<span><span class="co">#&gt;  [7] compiler_4.5.1              RSQLite_2.4.1               png_0.1-8                  </span></span>
+<span><span class="co">#&gt; [10] systemfonts_1.2.3           vctrs_0.6.5                 reshape2_1.4.4             </span></span>
+<span><span class="co">#&gt; [13] stringr_1.5.1               pkgconfig_2.0.3             crayon_1.5.3               </span></span>
+<span><span class="co">#&gt; [16] fastmap_1.2.0               dbplyr_2.5.0                XVector_0.49.0             </span></span>
+<span><span class="co">#&gt; [19] labeling_0.4.3              utf8_1.2.6                  Rsamtools_2.25.1           </span></span>
+<span><span class="co">#&gt; [22] rmarkdown_2.29              tzdb_0.5.0                  UCSC.utils_1.5.0           </span></span>
+<span><span class="co">#&gt; [25] ragg_1.4.0                  purrr_1.0.4                 bit_4.6.0                  </span></span>
+<span><span class="co">#&gt; [28] xfun_0.52                   cachem_1.1.0                GenomeInfoDb_1.45.7        </span></span>
+<span><span class="co">#&gt; [31] jsonlite_2.0.0              blob_1.2.4                  DelayedArray_0.35.2        </span></span>
+<span><span class="co">#&gt; [34] BiocParallel_1.43.4         parallel_4.5.1              R6_2.6.1                   </span></span>
+<span><span class="co">#&gt; [37] stringi_1.8.7               bslib_0.9.0                 RColorBrewer_1.1-3         </span></span>
+<span><span class="co">#&gt; [40] rtracklayer_1.69.1          jquerylib_0.1.4             Rcpp_1.1.0                 </span></span>
+<span><span class="co">#&gt; [43] SummarizedExperiment_1.39.1 knitr_1.50                  readr_2.1.5                </span></span>
+<span><span class="co">#&gt; [46] Matrix_1.7-3                tidyselect_1.2.1            abind_1.4-8                </span></span>
+<span><span class="co">#&gt; [49] yaml_2.3.10                 codetools_0.2-20            curl_6.4.0                 </span></span>
+<span><span class="co">#&gt; [52] lattice_0.22-7              tibble_3.3.0                regioneR_1.41.3            </span></span>
+<span><span class="co">#&gt; [55] plyr_1.8.9                  withr_3.0.2                 KEGGREST_1.49.1            </span></span>
+<span><span class="co">#&gt; [58] evaluate_1.0.4              desc_1.4.3                  BiocFileCache_2.99.5       </span></span>
+<span><span class="co">#&gt; [61] Biostrings_2.77.2           pillar_1.10.2               BiocManager_1.30.26        </span></span>
+<span><span class="co">#&gt; [64] filelock_1.0.3              MatrixGenerics_1.21.0       RCurl_1.98-1.17            </span></span>
+<span><span class="co">#&gt; [67] BiocVersion_3.22.0          hms_1.1.3                   scales_1.4.0               </span></span>
+<span><span class="co">#&gt; [70] glue_1.8.0                  tools_4.5.1                 AnnotationHub_3.99.6       </span></span>
+<span><span class="co">#&gt; [73] BiocIO_1.19.0               data.table_1.17.6           BSgenome_1.77.1            </span></span>
+<span><span class="co">#&gt; [76] GenomicAlignments_1.45.1    fs_1.6.6                    XML_3.99-0.18              </span></span>
+<span><span class="co">#&gt; [79] grid_4.5.1                  restfulr_0.0.16             cli_3.6.5                  </span></span>
+<span><span class="co">#&gt; [82] rappdirs_0.3.3              textshaping_1.0.1           S4Arrays_1.9.1             </span></span>
+<span><span class="co">#&gt; [85] dplyr_1.1.4                 gtable_0.3.6                sass_0.4.10                </span></span>
+<span><span class="co">#&gt; [88] digest_0.6.37               SparseArray_1.9.0           rjson_0.2.23               </span></span>
 <span><span class="co">#&gt; [91] htmlwidgets_1.6.4           farver_2.1.2                memoise_2.0.1              </span></span>
-<span><span class="co">#&gt; [94] htmltools_0.5.8.1           pkgdown_2.1.1.9000          lifecycle_1.0.4            </span></span>
-<span><span class="co">#&gt; [97] httr_1.4.7                  mime_0.12                   bit64_4.6.0-1</span></span></code></pre></div>
+<span><span class="co">#&gt; [94] htmltools_0.5.8.1           pkgdown_2.1.3.9000          lifecycle_1.0.4            </span></span>
+<span><span class="co">#&gt; [97] httr_1.4.7                  bit64_4.6.0-1</span></span></code></pre></div>
 </div>
 </div>
 
@@ -625,7 +625,7 @@ aberrantly methylated regions, <a href="https://doi.org/10.18710/ED8HSD" class="
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
 </div>
 
     </footer>
