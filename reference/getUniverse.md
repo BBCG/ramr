@@ -63,11 +63,11 @@ for the description of usage and sample data.
     combine.min.cpgs=5, combine.window=1000, combine.threshold=1e-3
   )
 #> Preprocessing data 
-#> [0.055s]
+#> [0.048s]
 #> Fitting beta distribution 
-#> [0.038s]
+#> [0.042s]
 #> Creating genomic ranges 
-#> [0.012s]
+#> [0.011s]
 
   # AMR enrichment analysis using LOLA
   library(LOLA)

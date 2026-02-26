@@ -128,7 +128,7 @@ plotAMR(data.ranges=ramr.data, amr.ranges=ramr.tp.unique[1])
 #> Loading required namespace: GenomeInfoDb
 #> Plotting 1 genomic ranges
 #> 100%
-#> [0.226s]
+#> [0.224s]
 #> $`chr1:2269871-2271665`
 ```
 
@@ -139,7 +139,7 @@ plotAMR(data.ranges=ramr.data, amr.ranges=ramr.tp.unique[1])
 plotAMR(data.ranges=ramr.data, amr.ranges=ramr.tp.nonunique[c(1,6,11)])
 #> Plotting 1 genomic ranges
 #> 100%
-#> [0.148s]
+#> [0.152s]
 #> $`chr1:874697-877876`
 ```
 
@@ -254,15 +254,15 @@ generation).
 # "smooth" methylation data without AMRs (negative control)
   smooth.data <-
     simulateData(template.ranges=ramr.data, nsamples=25)
-#> Preprocessing data [0.054s]
-#> Simulating data [0.007s]
+#> Preprocessing data [0.050s]
+#> Simulating data [0.008s]
   
 # methylation data with AMRs and noise
   noisy.data <-
     simulateData(template.ranges=ramr.data, nsamples=25,
                  amr.ranges=c(amrs.unique, amrs.nonunique, noise))
-#> Preprocessing data [0.059s]
-#> Simulating data [0.007s]
+#> Preprocessing data [0.055s]
+#> Simulating data [0.008s]
 #> Introducing epimutations[0.026s]
   
 # that's how regions look like
@@ -277,7 +277,7 @@ generation).
   do.call("grid.arrange", c(plotAMR(data.ranges=noisy.data, amr.ranges=amrs.unique[1:4]), ncol=2))
 #> Plotting 4 genomic ranges
 #>  25% 50% 75%100%
-#> [0.375s]
+#> [0.371s]
 ```
 
 ![](ramr_files/figure-html/unnamed-chunk-3-1.png)
@@ -287,7 +287,7 @@ generation).
   do.call("grid.arrange", c(plotAMR(data.ranges=noisy.data, amr.ranges=sort(amrs.nonunique)[1:8]), ncol=2))
 #> Plotting 4 genomic ranges
 #>  25% 50% 75%100%
-#> [0.402s]
+#> [0.379s]
 ```
 
 ![](ramr_files/figure-html/unnamed-chunk-3-2.png)
@@ -297,7 +297,7 @@ generation).
   do.call("grid.arrange", c(plotAMR(data.ranges=noisy.data, amr.ranges=noise[1:4]), ncol=2))
 #> Plotting 4 genomic ranges
 #>  25% 50% 75%100%
-#> [0.466s]
+#> [0.483s]
 #> `geom_line()`: Each group consists of only one observation.
 #> ℹ Do you need to adjust the group aesthetic?
 ```
@@ -316,10 +316,10 @@ generation).
     )
   )
 #> Preprocessing data [0.014s]
-#> Fitting beta distribution [0.019s]
+#> Fitting beta distribution [0.021s]
 #> Creating genomic ranges [0.010s]
 #>    user  system elapsed 
-#>   0.061   0.001   0.062
+#>   0.064   0.000   0.065
   
 # all possible regions
   all.ranges <- getUniverse(noisy.data, min.cpgs=5, merge.window=1000)
@@ -359,9 +359,9 @@ amrs <- getAMR(
   data.ranges=ramr.data, data.samples=ramr.samples, compute="beta+binom",
       combine.min.cpgs=5, combine.threshold=1e-2, combine.window=1000
 )
-#> Preprocessing data [0.053s]
-#> Fitting beta distribution [0.067s]
-#> Creating genomic ranges [0.010s]
+#> Preprocessing data [0.049s]
+#> Fitting beta distribution [0.078s]
+#> Creating genomic ranges [0.009s]
 
 # inspect
 sort(amrs)
@@ -398,7 +398,7 @@ sort(amrs)
 do.call("grid.arrange", c(plotAMR(data.ranges=ramr.data, amr.ranges=amrs[1:10]), ncol=2))
 #> Plotting 4 genomic ranges
 #>  25% 50% 75%100%
-#> [0.672s]
+#> [0.737s]
 ```
 
 ![](ramr_files/figure-html/unnamed-chunk-4-1.png)
@@ -438,11 +438,7 @@ annotations <- build_annotations(genome='hg19', annotations=annotation.types)
 #> Building first exons...
 #> Building introns...
 #> Building CpG islands...
-#> Error while performing HEAD request.
-#>    Proceeding without cache information.
 #> loading from cache
-#> Error while performing HEAD request.
-#>    Proceeding without cache information.
 #> Building CpG shores...
 #> Building CpG shelves...
 #> Building inter-CpG-islands...
@@ -518,7 +514,7 @@ sessionInfo()
 #>  [1] org.Hs.eg.db_3.22.0                      TxDb.Hsapiens.UCSC.hg19.knownGene_3.22.1
 #>  [3] GenomicFeatures_1.63.1                   AnnotationDbi_1.73.0                    
 #>  [5] Biobase_2.71.0                           annotatr_1.37.0                         
-#>  [7] gridExtra_2.3                            ramr_1.19.1                             
+#>  [7] gridExtra_2.3                            ramr_1.19.2                             
 #>  [9] ggplot2_4.0.2                            GenomicRanges_1.63.1                    
 #> [11] Seqinfo_1.1.0                            IRanges_2.45.0                          
 #> [13] S4Vectors_0.49.0                         BiocGenerics_0.57.0                     

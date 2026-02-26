@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ramr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.19.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Oleksii
 Nikolaienko</h4>
             
-            <h4 data-toc-skip class="date">25 February, 2026</h4>
+            <h4 data-toc-skip class="date">26 February, 2026</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/BBCG/ramr/blob/devel/vignettes/ramr.Rmd" class="external-link"><code>vignettes/ramr.Rmd</code></a></small>
       <div class="d-none name"><code>ramr.Rmd</code></div>
@@ -205,14 +205,14 @@ carries 6 unique (<code>ramr.tp.unique</code>) and 15 non-unique
 <span><span class="co">#&gt; Loading required namespace: GenomeInfoDb</span></span>
 <span><span class="co">#&gt; Plotting 1 genomic ranges</span></span>
 <span><span class="co">#&gt; 100%</span></span>
-<span><span class="co">#&gt; [0.226s]</span></span>
+<span><span class="co">#&gt; [0.224s]</span></span>
 <span><span class="co">#&gt; $`chr1:2269871-2271665`</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="100%" height="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">ramr.data</span>, amr.ranges<span class="op">=</span><span class="va">ramr.tp.nonunique</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span>,<span class="fl">11</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 1 genomic ranges</span></span>
 <span><span class="co">#&gt; 100%</span></span>
-<span><span class="co">#&gt; [0.148s]</span></span>
+<span><span class="co">#&gt; [0.152s]</span></span>
 <span><span class="co">#&gt; $`chr1:874697-877876`</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-2-2.png" class="r-plt" alt="" width="100%" height="100%"></p>
 <p>The input (or template) object may be obtained using data from
@@ -324,15 +324,15 @@ cost of serial random number generation).</p>
 <span><span class="co"># "smooth" methylation data without AMRs (negative control)</span></span>
 <span>  <span class="va">smooth.data</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="../reference/simulateData.html">simulateData</a></span><span class="op">(</span>template.ranges<span class="op">=</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">25</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Preprocessing data [0.054s]</span></span>
-<span><span class="co">#&gt; Simulating data [0.007s]</span></span>
+<span><span class="co">#&gt; Preprocessing data [0.050s]</span></span>
+<span><span class="co">#&gt; Simulating data [0.008s]</span></span>
 <span>  </span>
 <span><span class="co"># methylation data with AMRs and noise</span></span>
 <span>  <span class="va">noisy.data</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="../reference/simulateData.html">simulateData</a></span><span class="op">(</span>template.ranges<span class="op">=</span><span class="va">ramr.data</span>, nsamples<span class="op">=</span><span class="fl">25</span>,</span>
 <span>                 amr.ranges<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">amrs.unique</span>, <span class="va">amrs.nonunique</span>, <span class="va">noise</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Preprocessing data [0.059s]</span></span>
-<span><span class="co">#&gt; Simulating data [0.007s]</span></span>
+<span><span class="co">#&gt; Preprocessing data [0.055s]</span></span>
+<span><span class="co">#&gt; Simulating data [0.008s]</span></span>
 <span><span class="co">#&gt; Introducing epimutations[0.026s]</span></span>
 <span>  </span>
 <span><span class="co"># that's how regions look like</span></span>
@@ -347,19 +347,19 @@ cost of serial random number generation).</p>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">noisy.data</span>, amr.ranges<span class="op">=</span><span class="va">amrs.unique</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.375s]</span></span></code></pre></div>
+<span><span class="co">#&gt; [0.371s]</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="100%" height="100%"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">noisy.data</span>, amr.ranges<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">amrs.nonunique</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.402s]</span></span></code></pre></div>
+<span><span class="co">#&gt; [0.379s]</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-3-2.png" class="r-plt" alt="" width="100%" height="100%"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">noisy.data</span>, amr.ranges<span class="op">=</span><span class="va">noise</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.466s]</span></span>
+<span><span class="co">#&gt; [0.483s]</span></span>
 <span><span class="co">#&gt; `geom_line()`: Each group consists of only one observation.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Do you need to adjust the <span style="color: #00BB00;">group</span> aesthetic?</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-3-3.png" class="r-plt" alt="" width="100%" height="100%"></p>
@@ -374,10 +374,10 @@ cost of serial random number generation).</p>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; Preprocessing data [0.014s]</span></span>
-<span><span class="co">#&gt; Fitting beta distribution [0.019s]</span></span>
+<span><span class="co">#&gt; Fitting beta distribution [0.021s]</span></span>
 <span><span class="co">#&gt; Creating genomic ranges [0.010s]</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;   0.061   0.001   0.062</span></span>
+<span><span class="co">#&gt;   0.064   0.000   0.065</span></span>
 <span>  </span>
 <span><span class="co"># all possible regions</span></span>
 <span>  <span class="va">all.ranges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getUniverse.html">getUniverse</a></span><span class="op">(</span><span class="va">noisy.data</span>, min.cpgs<span class="op">=</span><span class="fl">5</span>, merge.window<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
@@ -415,9 +415,9 @@ provided data files:</p>
 <span>  data.ranges<span class="op">=</span><span class="va">ramr.data</span>, data.samples<span class="op">=</span><span class="va">ramr.samples</span>, compute<span class="op">=</span><span class="st">"beta+binom"</span>,</span>
 <span>      combine.min.cpgs<span class="op">=</span><span class="fl">5</span>, combine.threshold<span class="op">=</span><span class="fl">1e-2</span>, combine.window<span class="op">=</span><span class="fl">1000</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Preprocessing data [0.053s]</span></span>
-<span><span class="co">#&gt; Fitting beta distribution [0.067s]</span></span>
-<span><span class="co">#&gt; Creating genomic ranges [0.010s]</span></span>
+<span><span class="co">#&gt; Preprocessing data [0.049s]</span></span>
+<span><span class="co">#&gt; Fitting beta distribution [0.078s]</span></span>
+<span><span class="co">#&gt; Creating genomic ranges [0.009s]</span></span>
 <span></span>
 <span><span class="co"># inspect</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">amrs</span><span class="op">)</span></span>
@@ -454,7 +454,7 @@ provided data files:</p>
 <span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/plotAMR.html">plotAMR</a></span><span class="op">(</span>data.ranges<span class="op">=</span><span class="va">ramr.data</span>, amr.ranges<span class="op">=</span><span class="va">amrs</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Plotting 4 genomic ranges</span></span>
 <span><span class="co">#&gt;  25% 50% 75%100%</span></span>
-<span><span class="co">#&gt; [0.672s]</span></span></code></pre></div>
+<span><span class="co">#&gt; [0.737s]</span></span></code></pre></div>
 <p><img src="ramr_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="100%" height="100%"></p>
 <p>The results of parallel AMR search are fully reproducible (do not
 depend on the seed).</p>
@@ -495,11 +495,7 @@ Pages 587–589, &lt;a href="https://doi.org/10.1093/bioinformatics/btv612" clas
 <span><span class="co">#&gt; Building first exons...</span></span>
 <span><span class="co">#&gt; Building introns...</span></span>
 <span><span class="co">#&gt; Building CpG islands...</span></span>
-<span><span class="co">#&gt; Error while performing HEAD request.</span></span>
-<span><span class="co">#&gt;    Proceeding without cache information.</span></span>
 <span><span class="co">#&gt; loading from cache</span></span>
-<span><span class="co">#&gt; Error while performing HEAD request.</span></span>
-<span><span class="co">#&gt;    Proceeding without cache information.</span></span>
 <span><span class="co">#&gt; Building CpG shores...</span></span>
 <span><span class="co">#&gt; Building CpG shelves...</span></span>
 <span><span class="co">#&gt; Building inter-CpG-islands...</span></span>
@@ -575,7 +571,7 @@ aberrantly methylated regions, <a href="https://doi.org/10.18710/ED8HSD" class="
 <span><span class="co">#&gt;  [1] org.Hs.eg.db_3.22.0                      TxDb.Hsapiens.UCSC.hg19.knownGene_3.22.1</span></span>
 <span><span class="co">#&gt;  [3] GenomicFeatures_1.63.1                   AnnotationDbi_1.73.0                    </span></span>
 <span><span class="co">#&gt;  [5] Biobase_2.71.0                           annotatr_1.37.0                         </span></span>
-<span><span class="co">#&gt;  [7] gridExtra_2.3                            ramr_1.19.1                             </span></span>
+<span><span class="co">#&gt;  [7] gridExtra_2.3                            ramr_1.19.2                             </span></span>
 <span><span class="co">#&gt;  [9] ggplot2_4.0.2                            GenomicRanges_1.63.1                    </span></span>
 <span><span class="co">#&gt; [11] Seqinfo_1.1.0                            IRanges_2.45.0                          </span></span>
 <span><span class="co">#&gt; [13] S4Vectors_0.49.0                         BiocGenerics_0.57.0                     </span></span>
