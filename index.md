@@ -54,23 +54,11 @@ pages](https://bbcg.github.io/ramr/articles/ramr.html).
 
 ### install via Bioconductor
 
-``` r
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("ramr")
-```
+`if`` ``(``!`[`requireNamespace`](https://rdrr.io/r/base/ns-load.html)`(``"BiocManager"``, quietly ``=`` ``TRUE``)``)`` `` `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"BiocManager"``)`` `` ``BiocManager``::`[`install`](https://bioconductor.github.io/BiocManager/reference/install.html)`(``"ramr"``)`
 
 ### Install the latest version via install_github
 
-``` r
-
-library(devtools)
-install_github("BBCG/ramr", build_vignettes=FALSE,
-  repos=BiocManager::repositories(),
-  dependencies=TRUE, type="source")
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`devtools`](https://devtools.r-lib.org/)`)`` `[`install_github`](https://devtools.r-lib.org/reference/install-deprecated.html)`(``"BBCG/ramr"``, build_vignettes``=``FALSE``,`` `` repos``=``BiocManager``::`[`repositories`](https://bioconductor.github.io/BiocManager/reference/repositories.html)`(``)``,`` `` dependencies``=``TRUE``, type``=``"source"``)`
 
 ------------------------------------------------------------------------
 
@@ -124,49 +112,12 @@ sample beta values. A typical input object looks like this:
 This code shows how to do basic analysis with `ramr` using provided data
 files:
 
-``` r
-
-library(ramr)
-data(ramr)
-
-# search for AMRs
-amrs <- getAMR(data.ranges=ramr.data, compute="beta+binom", compute.estimate="amle",
-               compute.weights="logInvDist", combine.min.cpgs=5, combine.threshold=1e-2, combine.window=1000)
-
-# inspect
-amrs
-plotAMR(data.ranges=ramr.data, amr.ranges=amrs[1])
-
-# generate the set of all possible genomic regions using sample data set and
-# the same parameters as for AMR search
-universe <- getUniverse(ramr.data, min.cpgs=5, merge.window=1000)
-
-# enrichment analysis of AMRs using R library LOLA
-library(LOLA)
-hg19.coredb <- loadRegionDB(system.file("LOLACore", "hg19", package="LOLA"))
-core.hits   <- runLOLA(amrs, universe, hg19.coredb, cores=1, redefineUserSets=TRUE)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ramr`](https://github.com/BBCG/ramr)`)`` `[`data`](https://rdrr.io/r/utils/data.html)`(``ramr``)`` `` ``# search for AMRs`` ``amrs`` ``<-`` `[`getAMR`](reference/getAMR.md)`(``data.ranges``=``ramr.data``, compute``=``"beta+binom"``, compute.estimate``=``"amle"``,`` `` compute.weights``=``"logInvDist"``, combine.min.cpgs``=``5``, combine.threshold``=``1e-2``, combine.window``=``1000``)`` `` ``# inspect`` ``amrs`` `[`plotAMR`](reference/plotAMR.md)`(``data.ranges``=``ramr.data``, amr.ranges``=``amrs``[``1``]``)`` `` ``# generate the set of all possible genomic regions using sample data set and`` ``# the same parameters as for AMR search`` ``universe`` ``<-`` `[`getUniverse`](reference/getUniverse.md)`(``ramr.data``, min.cpgs``=``5``, merge.window``=``1000``)`` `` ``# enrichment analysis of AMRs using R library LOLA`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`LOLA`](http://code.databio.org/LOLA)`)`` ``hg19.coredb`` ``<-`` `[`loadRegionDB`](https://rdrr.io/pkg/LOLA/man/loadRegionDB.html)`(`[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"LOLACore"``, ``"hg19"``, package``=``"LOLA"``)``)`` ``core.hits`` ``<-`` `[`runLOLA`](https://rdrr.io/pkg/LOLA/man/runLOLA.html)`(``amrs``, ``universe``, ``hg19.coredb``, cores``=``1``, redefineUserSets``=``TRUE``)`
 
 The following code generates random AMRs and methylation beta values
 using provided data set as a template:
 
-``` r
-
-# set the seed for reproducibility
-set.seed(1)
-
-# unique random AMRs
-amrs.unique <- simulateAMR(ramr.data, nsamples=10, regions.per.sample=2,
-                           min.cpgs=5, merge.window=1000, dbeta=0.2)
-
-# methylation data with AMRs
-data.with.amrs <- simulateData(template.ranges=ramr.data, nsamples=99,
-                               amr.ranges=amrs.unique, ncores=2)
-  
-# that's how regions look like
-library(gridExtra)
-do.call("grid.arrange", c(plotAMR(data.with.amrs, amr.ranges=amrs.unique[1:2]), ncol=2))
-```
+`# set the seed for reproducibility`` `[`set.seed`](https://rdrr.io/r/base/Random.html)`(``1``)`` `` ``# unique random AMRs`` ``amrs.unique`` ``<-`` `[`simulateAMR`](reference/simulateAMR.md)`(``ramr.data``, nsamples``=``10``, regions.per.sample``=``2``,`` `` min.cpgs``=``5``, merge.window``=``1000``, dbeta``=``0.2``)`` `` ``# methylation data with AMRs`` ``data.with.amrs`` ``<-`` `[`simulateData`](reference/simulateData.md)`(``template.ranges``=``ramr.data``, nsamples``=``99``,`` `` amr.ranges``=``amrs.unique``, ncores``=``2``)`` `` `` ``# that's how regions look like`` `[`library`](https://rdrr.io/r/base/library.html)`(``gridExtra``)`` `[`do.call`](https://rdrr.io/r/base/do.call.html)`(``"grid.arrange"``, `[`c`](https://rdrr.io/r/base/c.html)`(`[`plotAMR`](reference/plotAMR.md)`(``data.with.amrs``, amr.ranges``=``amrs.unique``[``1``:``2``]``)``, ncol``=``2``)``)`
 
 The input (or template) object may be obtained using data from various
 sources. Here we provide two examples:
@@ -178,77 +129,11 @@ database, performs normalization and creates *`GRanges`* object for
 further analysis using `ramr` (system requirements: 22GB of disk space,
 64GB of RAM)
 
-``` r
-
-library(minfi)
-library(GEOquery)
-library(GenomicRanges)
-library(IlluminaHumanMethylation450kanno.ilmn12.hg19)
-
-# destination for temporary files
-dest.dir <- tempdir()
-
-# downloading and unpacking raw IDAT files
-suppl.files <- getGEOSuppFiles("GSE51032", baseDir=dest.dir, makeDirectory=FALSE, filter_regex="RAW")
-# The default timeout for downloading files in R 4.1 is 60 seconds.
-# If code above fails because of that, change your timeout using 
-# options(timeout=600)
-untar(rownames(suppl.files), exdir=dest.dir, verbose=TRUE)
-idat.files  <- list.files(dest.dir, pattern="idat.gz$", full.names=TRUE)
-sapply(idat.files, gunzip, overwrite=TRUE)
-
-# reading IDAT files
-geo.idat <- read.metharray.exp(dest.dir)
-colnames(geo.idat) <- gsub("(GSM\\d+).*", "\\1", colnames(geo.idat))
-
-# processing raw data
-genomic.ratio.set <- preprocessQuantile(geo.idat, mergeManifest=TRUE, fixOutliers=TRUE)
-
-# creating the GRanges object with beta values
-data.ranges <- granges(genomic.ratio.set)
-data.betas  <- getBeta(genomic.ratio.set)
-sample.ids  <- colnames(geo.idat)
-mcols(data.ranges) <- data.betas
-
-# data.ranges and sample.ids objects are now ready for AMR search using ramr
-```
+[`library`](https://rdrr.io/r/base/library.html)`(``minfi``)`` `[`library`](https://rdrr.io/r/base/library.html)`(``GEOquery``)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`GenomicRanges`](https://bioconductor.org/packages/GenomicRanges)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(``IlluminaHumanMethylation450kanno.ilmn12.hg19``)`` `` ``# destination for temporary files`` ``dest.dir`` ``<-`` `[`tempdir`](https://rdrr.io/r/base/tempfile.html)`(``)`` `` ``# downloading and unpacking raw IDAT files`` ``suppl.files`` ``<-`` ``getGEOSuppFiles``(``"GSE51032"``, baseDir``=``dest.dir``, makeDirectory``=``FALSE``, filter_regex``=``"RAW"``)`` ``# The default timeout for downloading files in R 4.1 is 60 seconds.`` ``# If code above fails because of that, change your timeout using `` ``# options(timeout=600)`` `[`untar`](https://rdrr.io/r/utils/untar.html)`(`[`rownames`](https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html)`(``suppl.files``)``, exdir``=``dest.dir``, verbose``=``TRUE``)`` ``idat.files`` ``<-`` `[`list.files`](https://rdrr.io/r/base/list.files.html)`(``dest.dir``, pattern``=``"idat.gz$"``, full.names``=``TRUE``)`` `[`sapply`](https://rdrr.io/pkg/BiocGenerics/man/lapply.html)`(``idat.files``, ``gunzip``, overwrite``=``TRUE``)`` `` ``# reading IDAT files`` ``geo.idat`` ``<-`` ``read.metharray.exp``(``dest.dir``)`` `[`colnames`](https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html)`(``geo.idat``)`` ``<-`` `[`gsub`](https://rdrr.io/r/base/grep.html)`(``"(GSM\\d+).*"``, ``"\\1"``, `[`colnames`](https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html)`(``geo.idat``)``)`` `` ``# processing raw data`` ``genomic.ratio.set`` ``<-`` ``preprocessQuantile``(``geo.idat``, mergeManifest``=``TRUE``, fixOutliers``=``TRUE``)`` `` ``# creating the GRanges object with beta values`` ``data.ranges`` ``<-`` `[`granges`](https://rdrr.io/pkg/GenomicRanges/man/genomic-range-squeezers.html)`(``genomic.ratio.set``)`` ``data.betas`` ``<-`` ``getBeta``(``genomic.ratio.set``)`` ``sample.ids`` ``<-`` `[`colnames`](https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html)`(``geo.idat``)`` `[`mcols`](https://rdrr.io/pkg/S4Vectors/man/Vector-class.html)`(``data.ranges``)`` ``<-`` ``data.betas`` `` ``# data.ranges and sample.ids objects are now ready for AMR search using ramr`
 
 ### Using Bismark cytosine report files
 
-``` r
-
-library(methylKit)
-library(GenomicRanges)
-
-# file.list is a user-defined character vector with full file names of Bismark cytosine report files
-file.list
-
-# sample.ids is a user-defined character vector holding sample names
-sample.ids
-
-# methylation context string, defines if the reads covering both strands will be merged
-context <- "CpG"
-
-# fitting beta distribution (filtering using ramr.method "beta" or "wbeta") requires
-# that most of the beta values are not equal to 0 or 1
-min.beta <- 0.001
-max.beta <- 0.999
-
-# reading and uniting methylation values
-meth.data.raw <- methRead(as.list(file.list), as.list(sample.ids), assembly="hg19", header=TRUE,
-                          context=context, resolution="base", treatment=rep(0,length(sample.ids)),
-                          pipeline="bismarkCytosineReport")
-meth.data.utd <- unite(meth.data.raw, destrand=isTRUE(context=="CpG"))
-
-# creating the GRanges object with beta values
-data.ranges <- GRanges(meth.data.utd)
-data.betas  <- percMethylation(meth.data.utd)/100
-data.betas[data.betas<min.beta] <- min.beta
-data.betas[data.betas>max.beta] <- max.beta
-mcols(data.ranges) <- data.betas
-
-# data.ranges and sample.ids objects are now ready for AMR search using ramr
-```
+[`library`](https://rdrr.io/r/base/library.html)`(``methylKit``)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`GenomicRanges`](https://bioconductor.org/packages/GenomicRanges)`)`` `` ``# file.list is a user-defined character vector with full file names of Bismark cytosine report files`` ``file.list`` `` ``# sample.ids is a user-defined character vector holding sample names`` ``sample.ids`` `` ``# methylation context string, defines if the reads covering both strands will be merged`` ``context`` ``<-`` ``"CpG"`` `` ``# fitting beta distribution (filtering using ramr.method "beta" or "wbeta") requires`` ``# that most of the beta values are not equal to 0 or 1`` ``min.beta`` ``<-`` ``0.001`` ``max.beta`` ``<-`` ``0.999`` `` ``# reading and uniting methylation values`` ``meth.data.raw`` ``<-`` ``methRead``(`[`as.list`](https://rdrr.io/pkg/BiocGenerics/man/as.list.html)`(``file.list``)``, `[`as.list`](https://rdrr.io/pkg/BiocGenerics/man/as.list.html)`(``sample.ids``)``, assembly``=``"hg19"``, header``=``TRUE``,`` `` context``=``context``, resolution``=``"base"``, treatment``=`[`rep`](https://rdrr.io/r/base/rep.html)`(``0``,`[`length`](https://rdrr.io/r/base/length.html)`(``sample.ids``)``)``,`` `` pipeline``=``"bismarkCytosineReport"``)`` ``meth.data.utd`` ``<-`` ``unite``(``meth.data.raw``, destrand``=`[`isTRUE`](https://rdrr.io/r/base/Logic.html)`(``context``==``"CpG"``)``)`` `` ``# creating the GRanges object with beta values`` ``data.ranges`` ``<-`` `[`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html)`(``meth.data.utd``)`` ``data.betas`` ``<-`` ``percMethylation``(``meth.data.utd``)``/``100`` ``data.betas``[``data.betas``<``min.beta``]`` ``<-`` ``min.beta`` ``data.betas``[``data.betas``>``max.beta``]`` ``<-`` ``max.beta`` `[`mcols`](https://rdrr.io/pkg/S4Vectors/man/Vector-class.html)`(``data.ranges``)`` ``<-`` ``data.betas`` `` ``# data.ranges and sample.ids objects are now ready for AMR search using ramr`
 
 ## License
 
