@@ -113,7 +113,7 @@ for the description of usage and sample data.
   plotAMR(data.ranges=ramr.data, amr.ranges=ramr.tp.unique[1])
 #> Plotting 1 genomic ranges 
 #> 100%
-#> [0.202s]
+#> [0.216s]
 #> $`chr1:2269871-2271665`
 
 #> 
@@ -122,5 +122,5 @@ for the description of usage and sample data.
           c(plotAMR(data.ranges=ramr.data, amr.ranges=ramr.tp.nonunique), ncol=2))
 #> Plotting 5 genomic ranges 
 #>  20% 40% 60% 80%100%
-#> [0.558s]
+#> [0.575s]
 ```

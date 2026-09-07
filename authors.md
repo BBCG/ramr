@@ -18,4 +18,5 @@ https://doi.org/10.1093/bioinformatics/btab586
 @Article{, title = {ramr: an R/Bioconductor package for detection of
 rare aberrantly methylated regions}, author = {Oleksii Nikolaienko and
 Per Eystein Lønning and Stian Knappskog}, journal = {Bioinformatics},
-year = {2021}, url = {https://doi.org/10.1093/bioinformatics/btab586}, }
+year = {2021}, doi = {10.1093/bioinformatics/btab586}, url =
+{https://doi.org/10.1093/bioinformatics/btab586}, }

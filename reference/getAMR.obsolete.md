@@ -169,7 +169,7 @@ for the description of usage and sample data.
 #> Identifying AMRs
 #> Loading required package: foreach
 #> Loading required package: rngtools
-#>  [5.137s]
+#>  [5.423s]
 #> Loading required namespace: GenomeInfoDb
 #> GRanges object with 22 ranges and 5 metadata columns:
 #>        seqnames          ranges strand |             revmap      ncpg

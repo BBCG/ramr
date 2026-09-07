@@ -37,11 +37,11 @@ Nikolaienko et al., 2020
 #> Computing IQR 
 #> [0.003s]
 #> Creating genomic ranges 
-#> [0.011s]
+#> [0.012s]
   plotAMR(data.ranges=ramr.data, amr.ranges=amrs[1])
 #> Plotting 1 genomic ranges 
 #> 100%
-#> [0.150s]
+#> [0.151s]
 #> $`chr1:2443577-2453006`
 
 #> 
@@ -49,7 +49,7 @@ Nikolaienko et al., 2020
           highlight=c("sample7","sample8","sample9"))
 #> Plotting 1 genomic ranges 
 #> 100%
-#> [0.169s]
+#> [0.176s]
 #> $`chr1:2119531-2122601`
 
 #> 
