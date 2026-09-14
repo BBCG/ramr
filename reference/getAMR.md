@@ -340,9 +340,9 @@ for the description of usage and sample data.
          compute="beta+binom", compute.estimate="amle",
          combine.min.cpgs=5, combine.window=1000, combine.threshold=1e-3)
 #> Preprocessing data 
-#> [0.057s]
+#> [0.054s]
 #> Fitting beta distribution 
-#> [0.036s]
+#> [0.048s]
 #> Creating genomic ranges 
 #> [0.024s]
 #> GRanges object with 21 ranges and 5 metadata columns:

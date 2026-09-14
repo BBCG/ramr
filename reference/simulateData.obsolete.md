@@ -141,13 +141,13 @@ aberrations, [`getAMR`](getAMR.md) for identification of AMRs,
     simulateData.obsolete(ramr.data, nsamples=10, amr.ranges=c(amrs,noise),
                           cores=2)
 #> Simulating data
-#>  [0.801s]
+#>  [0.930s]
 #> Introducing epimutations
-#>  [0.020s]
+#>  [0.022s]
   plotAMR(noisy.data, amr.ranges=amrs[1])
 #> Plotting 1 genomic ranges 
 #> 100%
-#> [0.171s]
+#> [0.184s]
 #> $`chr1:1488581-1490906`
 
 #> 

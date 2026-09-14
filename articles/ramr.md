@@ -130,7 +130,7 @@ non-unique (`ramr.tp.nonunique`) true positive AMRs containing at least
 `#> Loading required namespace: GenomeInfoDb`\
 `#> Plotting 1 genomic ranges`\
 `#> 100%`\
-`#> [0.214s]`\
+`#> [0.213s]`\
 `` #> $`chr1:2269871-2271665` ``
 
 ![](ramr_files/figure-html/unnamed-chunk-2-1.png)
@@ -139,7 +139,7 @@ non-unique (`ramr.tp.nonunique`) true positive AMRs containing at least
 [`plotAMR`](../reference/plotAMR.md)`(``data.ranges``=``ramr.data``, amr.ranges``=``ramr.tp.nonunique``[`[`c`](https://rdrr.io/r/base/c.html)`(``1``,``6``,``11``)``]``)`\
 `#> Plotting 1 genomic ranges`\
 `#> 100%`\
-`#> [0.158s]`\
+`#> [0.155s]`\
 `` #> $`chr1:874697-877876` ``
 
 ![](ramr_files/figure-html/unnamed-chunk-2-2.png)
@@ -252,16 +252,16 @@ generation).
 `# "smooth" methylation data without AMRs (negative control)`\
 `  ``smooth.data`` ``<-`\
 `    `[`simulateData`](../reference/simulateData.md)`(``template.ranges``=``ramr.data``, nsamples``=``25``)`\
-`#> Preprocessing data [0.058s]`\
-`#> Simulating data [0.007s]`\
+`#> Preprocessing data [0.056s]`\
+`#> Simulating data [0.008s]`\
 `  `\
 `# methylation data with AMRs and noise`\
 `  ``noisy.data`` ``<-`\
 `    `[`simulateData`](../reference/simulateData.md)`(``template.ranges``=``ramr.data``, nsamples``=``25``,`\
 `                 amr.ranges``=`[`c`](https://rdrr.io/r/base/c.html)`(``amrs.unique``, ``amrs.nonunique``, ``noise``)``)`\
-`#> Preprocessing data [0.063s]`\
-`#> Simulating data [0.007s]`\
-`#> Introducing epimutations[0.027s]`\
+`#> Preprocessing data [0.061s]`\
+`#> Simulating data [0.008s]`\
+`#> Introducing epimutations[0.029s]`\
 `  `\
 `# that's how regions look like`\
 `  `[`library`](https://rdrr.io/r/base/library.html)`(``gridExtra``)`\
@@ -275,7 +275,7 @@ generation).
 `  `[`do.call`](https://rdrr.io/pkg/BiocGenerics/man/do.call.html)`(``"grid.arrange"``, `[`c`](https://rdrr.io/r/base/c.html)`(`[`plotAMR`](../reference/plotAMR.md)`(``data.ranges``=``noisy.data``, amr.ranges``=``amrs.unique``[``1``:``4``]``)``, ncol``=``2``)``)`\
 `#> Plotting 4 genomic ranges`\
 `#>  25% 50% 75%100%`\
-`#> [0.399s]`
+`#> [0.408s]`
 
 ![](ramr_files/figure-html/unnamed-chunk-3-1.png)
 
@@ -283,7 +283,7 @@ generation).
 `  `[`do.call`](https://rdrr.io/pkg/BiocGenerics/man/do.call.html)`(``"grid.arrange"``, `[`c`](https://rdrr.io/r/base/c.html)`(`[`plotAMR`](../reference/plotAMR.md)`(``data.ranges``=``noisy.data``, amr.ranges``=`[`sort`](https://rdrr.io/pkg/BiocGenerics/man/sort.html)`(``amrs.nonunique``)``[``1``:``8``]``)``, ncol``=``2``)``)`\
 `#> Plotting 4 genomic ranges`\
 `#>  25% 50% 75%100%`\
-`#> [0.405s]`
+`#> [0.406s]`
 
 ![](ramr_files/figure-html/unnamed-chunk-3-2.png)
 
@@ -291,7 +291,7 @@ generation).
 `  `[`do.call`](https://rdrr.io/pkg/BiocGenerics/man/do.call.html)`(``"grid.arrange"``, `[`c`](https://rdrr.io/r/base/c.html)`(`[`plotAMR`](../reference/plotAMR.md)`(``data.ranges``=``noisy.data``, amr.ranges``=``noise``[``1``:``4``]``)``, ncol``=``2``)``)`\
 `#> Plotting 4 genomic ranges`\
 `#>  25% 50% 75%100%`\
-`#> [0.473s]`\
+`#> [0.491s]`\
 `` #> `geom_line()`: Each group consists of only one observation. ``\
 `#> ``ℹ`` Do you need to adjust the ``group`` aesthetic?`
 
@@ -307,11 +307,11 @@ generation).
 `      combine.min.cpgs``=``5``, combine.threshold``=``1e-2``, combine.window``=``1000`\
 `    ``)`\
 `  ``)`\
-`#> Preprocessing data [0.015s]`\
-`#> Fitting beta distribution [0.018s]`\
-`#> Creating genomic ranges [0.011s]`\
+`#> Preprocessing data [0.018s]`\
+`#> Fitting beta distribution [0.024s]`\
+`#> Creating genomic ranges [0.012s]`\
 `#>    user  system elapsed `\
-`#>   0.068   0.000   0.068`\
+`#>   0.074   0.000   0.074`\
 `  `\
 `# all possible regions`\
 `  ``all.ranges`` ``<-`` `[`getUniverse`](../reference/getUniverse.md)`(``noisy.data``, min.cpgs``=``5``, merge.window``=``1000``)`\
@@ -349,8 +349,8 @@ files:
 `  data.ranges``=``ramr.data``, data.samples``=``ramr.samples``, compute``=``"beta+binom"``,`\
 `      combine.min.cpgs``=``5``, combine.threshold``=``1e-2``, combine.window``=``1000`\
 `)`\
-`#> Preprocessing data [0.058s]`\
-`#> Fitting beta distribution [0.068s]`\
+`#> Preprocessing data [0.057s]`\
+`#> Fitting beta distribution [0.091s]`\
 `#> Creating genomic ranges [0.010s]`\
 \
 `# inspect`\
@@ -388,7 +388,7 @@ files:
 [`do.call`](https://rdrr.io/pkg/BiocGenerics/man/do.call.html)`(``"grid.arrange"``, `[`c`](https://rdrr.io/r/base/c.html)`(`[`plotAMR`](../reference/plotAMR.md)`(``data.ranges``=``ramr.data``, amr.ranges``=``amrs``[``1``:``10``]``)``, ncol``=``2``)``)`\
 `#> Plotting 4 genomic ranges`\
 `#>  25% 50% 75%100%`\
-`#> [0.444s]`
+`#> [0.440s]`
 
 ![](ramr_files/figure-html/unnamed-chunk-4-1.png)
 

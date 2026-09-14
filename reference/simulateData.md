@@ -174,15 +174,15 @@ aberrations, [`getAMR`](getAMR.md) for identification of AMRs,
   noisy.data <-
     simulateData(template.ranges=ramr.data, nsamples=10, amr.ranges=c(amrs,noise))
 #> Preprocessing data 
-#> [0.055s]
+#> [0.053s]
 #> Simulating data 
-#> [0.003s]
+#> [0.004s]
 #> Introducing epimutations
-#> [0.013s]
+#> [0.015s]
   plotAMR(data.ranges=noisy.data, amr.ranges=amrs[1])
 #> Plotting 1 genomic ranges 
 #> 100%
-#> [0.104s]
+#> [0.103s]
 #> $`chr1:1333778-1338100`
 
 #> 

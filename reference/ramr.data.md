@@ -33,15 +33,15 @@ Nikolaienko et al., 2020
     combine.min.cpgs=5, combine.window=1000, combine.threshold=5
   )
 #> Preprocessing data 
-#> [0.057s]
+#> [0.054s]
 #> Computing IQR 
-#> [0.003s]
+#> [0.005s]
 #> Creating genomic ranges 
-#> [0.011s]
+#> [0.012s]
   plotAMR(data.ranges=ramr.data, amr.ranges=amrs[1])
 #> Plotting 1 genomic ranges 
 #> 100%
-#> [0.149s]
+#> [0.145s]
 #> $`chr1:2443577-2453006`
 
 #> 
@@ -49,7 +49,7 @@ Nikolaienko et al., 2020
           highlight=c("sample7","sample8","sample9"))
 #> Plotting 1 genomic ranges 
 #> 100%
-#> [0.167s]
+#> [0.165s]
 #> $`chr1:2119531-2122601`
 
 #> 
